@@ -1,4 +1,4 @@
-#ifndef MUSICLIST_H
+﻿#ifndef MUSICLIST_H
 #define MUSICLIST_H
 #include "music.h"
 #include <QVector>
@@ -17,10 +17,9 @@ public:
     MusicList();
     //add
     void addMusic(QUrl &url);
-    void addMusic();
-    //void addToPlayList();
-    //get
 
+    //delete
+    void deleteMusic(int index);
 
 
     void clear();

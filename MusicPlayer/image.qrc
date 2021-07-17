@@ -12,5 +12,6 @@
         <file>image/shuffle.png</file>
         <file>image/playlist.png</file>
         <file>image/addmusic.png</file>
+        <file>image/deletemusic.png</file>
     </qresource>
 </RCC>

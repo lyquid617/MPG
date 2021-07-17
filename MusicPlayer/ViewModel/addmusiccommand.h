@@ -1,4 +1,4 @@
-#ifndef ADDMUSICCOMMAND_H
+﻿#ifndef ADDMUSICCOMMAND_H
 #define ADDMUSICCOMMAND_H
 
 #include "Commands/command.h"
@@ -12,7 +12,7 @@ private:
 
 public:
     AddMusicCommand(std::shared_ptr<ViewModel> vm):vm(vm){}
-    void exec(QUrl &urli);
+    void exec(void* a);
 };
 
 #endif // ADDMUSICCOMMAND_H

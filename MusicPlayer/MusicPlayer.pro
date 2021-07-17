@@ -27,6 +27,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
+    ViewModel/deletemusiccommand.cpp \
         main.cpp \
         View/mainwindow.cpp \
 #        ViewModel/*.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
         App/app.h \
         Model/musiclist.h \
         Model/music.h \
+    ViewModel/deletemusiccommand.h \
         ViewModel/viewmodel.h \
         Commands/command.h \
         ViewModel/addmusiccommand.h\

@@ -1,4 +1,4 @@
-#include "Notification/notification.h"
+﻿#include "Notification/notification.h"
 #include "viewmodel.h"
 
 class UpdateInfoNotification : public Notification
@@ -11,5 +11,10 @@ public:
         QString s = *((QString*)(a));
         vm->AcceptNotify(s);
     }
+
+    void exec_delete_music(void* a){
+        int s = *((int*)(a));
+        vm->AcceptNotify(s);
+   }
 
 };

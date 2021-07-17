@@ -312,6 +312,29 @@ border:none
      <string>00:00 / 00:00</string>
     </property>
    </widget>
+   <widget class="QPushButton" name="deleteMusic">
+    <property name="geometry">
+     <rect>
+      <x>220</x>
+      <y>180</y>
+      <width>91</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+background-image:url(:/image/image/deletemusic.png);
+background-repeat:norepeat;
+background-position:center;
+border:none
+
+
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

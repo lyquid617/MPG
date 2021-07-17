@@ -1,3 +1,4 @@
+﻿
 #include "music.h"
 #include <QMediaPlayer>
 #include <QCoreApplication>

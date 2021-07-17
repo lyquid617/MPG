@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "View/updateviewnotification.h"
 
@@ -93,6 +93,10 @@ void MainWindow::init_player(){
 
 void MainWindow::set_addMusic_command(std::shared_ptr<Command> cmd){
     addmusiccommand = cmd;
+}
+
+void MainWindow::set_deleteMusic_command(std::shared_ptr<Command> cmd){
+    deletemusiccommand = cmd;
 }
 
 std::shared_ptr<Notification> MainWindow::get_update_notification(){
@@ -211,9 +215,21 @@ void MainWindow::on_addMusic_clicked()
            //addMusic(urls[i]);
            qDebug() << urls[i]<<endl;
            playlist->addMedia(QUrl(urls[i]));
-           addmusiccommand->exec(urls[i]);
+           addmusiccommand->exec(&urls[i]);
        }
     }
+}
+
+void MainWindow::on_deleteMusic_clicked()
+{
+//        QUrl tmp = playlist->media(selected_row).canonicalUrl();
+    if(selected_row!=-1){
+
+        deletemusiccommand->exec(&selected_row);
+
+        playlist->removeMedia(selected_row);
+    }
+    selected_row = -1;
 }
 
 
@@ -248,3 +264,8 @@ void MainWindow::on_musictable_cellDoubleClicked(int row, int column)
     player->play();
 }
 
+
+void MainWindow::on_musictable_cellClicked(int row, int column)
+{
+    selected_row = row;
+}

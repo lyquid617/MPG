@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -28,6 +28,7 @@ public:
     void init_player();
 
     void set_addMusic_command(std::shared_ptr<Command> cmd);
+    void set_deleteMusic_command(std::shared_ptr<Command> cmd);
     std::shared_ptr<Notification> get_update_notification();
     void update(QStringList );
     QString formatTime(int ms);
@@ -44,6 +45,8 @@ private slots:
 
     void on_addMusic_clicked();
 
+    void on_deleteMusic_clicked();
+
     void on_positionSlider_sliderReleased();
 
     void on_volume_clicked();
@@ -56,12 +59,17 @@ private slots:
     //manually added
     void updateInfo();
 
+    void on_musictable_cellClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;
     QMediaPlaylist *playlist;
 
+    int selected_row = -1;
+
     std::shared_ptr<Command> addmusiccommand;
+    std::shared_ptr<Command> deletemusiccommand;
     std::shared_ptr<Notification> update_view_notification;
 
 };

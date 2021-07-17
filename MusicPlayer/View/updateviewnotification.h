@@ -1,4 +1,4 @@
-#ifndef UPDATEVIEWNOTIFICATION_H
+﻿#ifndef UPDATEVIEWNOTIFICATION_H
 #define UPDATEVIEWNOTIFICATION_H
 
 #include "Notification/notification.h"
@@ -14,6 +14,11 @@ public:
     void exec_add_music(void* a){
         QString s = *((QString*)(a));
         lst.push_back(s);
+        window->update(lst);
+    }
+    void exec_delete_music(void* a){
+        int s = *((int*)(a));
+        lst.removeAt(s);
         window->update(lst);
     }
 

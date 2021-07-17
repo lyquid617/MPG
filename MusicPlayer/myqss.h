@@ -1,4 +1,4 @@
-#ifndef MYQSS_H
+﻿#ifndef MYQSS_H
 #define MYQSS_H
 #include<QString>
 

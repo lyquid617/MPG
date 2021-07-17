@@ -1,4 +1,4 @@
-#ifndef COMMAND_H
+﻿#ifndef COMMAND_H
 #define COMMAND_H
 #include<QUrl>
 
@@ -15,7 +15,7 @@ public:
 
 //    Parameters& get_params_handle();
 //    void set_view_model(std::shared_ptr<ViewModel> viewmodel);
-     virtual void exec(QUrl &) = 0;
+     virtual void exec(void *) = 0;
 };
 
 #endif // COMMAND_H

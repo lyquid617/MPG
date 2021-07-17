@@ -1,4 +1,4 @@
-#include "musiclist.h"
+﻿#include "musiclist.h"
 
 MusicList::MusicList()
 {
@@ -16,13 +16,11 @@ void MusicList::addMusic(QUrl &url){
 
 }
 
-//void MusicList::addToPlayList(){
+void MusicList::deleteMusic(int index){
 
-//    for(int i = 0;i<musics.size();i++){
-//        Playlist->addMedia(musics[i].getUrl());
-//    }
-
-//}
+    musics.remove(index);
+    update_info_notification->exec_delete_music(&index);
+}
 
 
 
