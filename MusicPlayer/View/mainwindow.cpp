@@ -86,6 +86,7 @@ void MainWindow::init_player(){
     });
     //connections
     //connect(ui->Pause,&QPushButton::clicked,this,&MainWindow::on_Pause_clicked);
+    connect(player,&QMediaPlayer::stateChanged,this,&MainWindow::updatePauseButton);
 
 }
 
@@ -151,17 +152,14 @@ void MainWindow::on_skipbackward_clicked()
     updateInfo();
 }
 
-//暂停按钮的显示应该单独写一个槽
 void MainWindow::on_Pause_clicked()
 {
     switch (player->state()) {
     case QMediaPlayer::PlayingState:
         player->pause();
-        ui->Pause->setStyleSheet(PauseStyle());
         break;
     case QMediaPlayer::PausedState:
         player->play();
-        ui->Pause->setStyleSheet(PlayStyle());
         break;
     case QMediaPlayer::StoppedState:
         //do nothing
@@ -248,3 +246,11 @@ void MainWindow::on_musictable_cellDoubleClicked(int row, int column)
     player->play();
 }
 
+//把图标更新从点击按钮里抽离出来了，因为除了点击按钮，其他操作也可能更新图标
+void MainWindow::updatePauseButton()
+{
+    if(player->state()==QMediaPlayer::PlayingState)
+        ui->Pause->setStyleSheet(PlayStyle());
+    else
+        ui->Pause->setStyleSheet(PauseStyle());
+}

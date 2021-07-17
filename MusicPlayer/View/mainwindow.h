@@ -55,6 +55,7 @@ private slots:
     void on_playmode_clicked();
     //manually added
     void updateInfo();
+    void updatePauseButton();
 
 private:
     Ui::MainWindow *ui;
