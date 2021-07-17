@@ -59,6 +59,8 @@ private slots:
     //manually added
     void updateInfo();
 
+    void updatePauseButton();
+
     void on_musictable_cellClicked(int row, int column);
 
 private:
