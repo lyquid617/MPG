@@ -63,12 +63,16 @@ private slots:
 
     void on_musictable_cellClicked(int row, int column);
 
+    void on_list_cellClicked(int row, int column);
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;
     QMediaPlaylist *playlist;
 
     int selected_row = -1;
+
+    int list_row = 1;
 
     std::shared_ptr<Command> addmusiccommand;
     std::shared_ptr<Command> deletemusiccommand;

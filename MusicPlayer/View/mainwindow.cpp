@@ -106,18 +106,25 @@ std::shared_ptr<Notification> MainWindow::get_update_notification(){
 
 void MainWindow::update(QStringList lst){
 
+    QTableWidget *tmp = ui->local;
+    switch (list_row) {
+    case 0: tmp = ui->favor;break;
+    case 1: tmp = ui->local;break;
+    case 2: tmp = ui->history;break;
+
+    }
     for(int i = 0;i<lst.size();i++){
-        ui->musictable->setRowCount(i+1);
+        tmp->setRowCount(i+1);
         //just simply slice the Url, you can do it further by analyse the Url
         QString s = lst[i];
         QTableWidgetItem *itemName = new QTableWidgetItem(s.mid(s.lastIndexOf("/")+1));
 
         itemName->setFlags((Qt::ItemFlag)32);
-        ui->musictable->setItem(i, 0, itemName);
+        tmp->setItem(i, 0, itemName);
 
     }
     //单元格大小设置
-    ui->musictable->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    tmp->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //ui->musictable->horizontalHeader()->setSectionResizeMode(QHeaderView::);
 }
 
@@ -213,7 +220,7 @@ void MainWindow::on_addMusic_clicked()
            //addMusic(urls[i]);
            qDebug() << urls[i]<<endl;
            playlist->addMedia(QUrl(urls[i]));
-           addmusiccommand->exec(&urls[i]);
+           addmusiccommand->exec(&urls[i],list_row);
        }
     }
 }
@@ -223,7 +230,7 @@ void MainWindow::on_deleteMusic_clicked()
 //        QUrl tmp = playlist->media(selected_row).canonicalUrl();
     if(selected_row!=-1){
 
-        deletemusiccommand->exec(&selected_row);
+        deletemusiccommand->exec(&selected_row,list_row);
 
         playlist->removeMedia(selected_row);
     }
@@ -274,4 +281,12 @@ void MainWindow::updatePauseButton()
 void MainWindow::on_musictable_cellClicked(int row, int column)
 {
     selected_row = row;
+}
+
+void MainWindow::on_list_cellClicked(int row, int column)
+{
+    list_row = row;
+    ui->favor->setHidden(0-row);
+    ui->local->setHidden(1-row);
+    ui->history->setHidden(2-row);
 }

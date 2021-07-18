@@ -21,9 +21,5 @@ public:
         lst.removeAt(s);
         window->update(lst);
     }
-
-
-
-
 };
 #endif // UPDATEVIEWNOTIFICATION_H
