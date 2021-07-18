@@ -12,8 +12,10 @@ ViewModel::ViewModel()
 
 }
 
-void ViewModel::bind(std::shared_ptr<MusicList> msc){
-    musiclist = msc;
+void ViewModel::bind(std::shared_ptr<MusicList> lm,std::shared_ptr<MusicList>fm,std::shared_ptr<MusicList>hm){
+    localmusic = lm;
+    favormusic = fm;
+    history = hm;
 
 }
 
@@ -25,14 +27,40 @@ std::shared_ptr<Command> ViewModel::get_deleteMusic_command(){
 }
 
 //TODO::
-void ViewModel::exec_addMusic_command(void* a){
+void ViewModel::exec_addMusic_command(void* a,int i){
     QUrl tmp = *((QUrl*)a);
-    musiclist->addMusic(tmp);
+    switch (i) {
+    case LOCAL:
+        localmusic->addMusic(tmp);
+        break;
+    case FAVOR:
+        favormusic->addMusic(tmp);
+        break;
+    case HISTORY:
+        history->addMusic(tmp);
+        break;
+    default:
+        break;
+    }
+
 }
 
-void ViewModel::exec_deleteMusic_command(void* a){
+void ViewModel::exec_deleteMusic_command(void* a,int i){
     int tmp = *((int*)a);
-    musiclist->deleteMusic(tmp);
+    switch (i) {
+    case LOCAL:
+        localmusic->deleteMusic(tmp);
+        break;
+    case FAVOR:
+        favormusic->deleteMusic(tmp);
+        break;
+    case HISTORY:
+        history->deleteMusic(tmp);
+        break;
+    default:
+        break;
+    }
+
 }
 
 

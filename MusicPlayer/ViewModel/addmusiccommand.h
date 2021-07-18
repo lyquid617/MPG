@@ -12,7 +12,7 @@ private:
 
 public:
     AddMusicCommand(std::shared_ptr<ViewModel> vm):vm(vm){}
-    void exec(void* a);
+    void exec(void* a,int i);
 };
 
 #endif // ADDMUSICCOMMAND_H
