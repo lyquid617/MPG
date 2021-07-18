@@ -3,6 +3,7 @@
 #include "View/mainwindow.h"
 #include "Model/musiclist.h"
 #include "ViewModel/viewmodel.h"
+#include <memory>
 
 class App
 {

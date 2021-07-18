@@ -14,6 +14,7 @@
 #include "Commands/command.h"
 #include <QFileDialog>
 #include <QStandardPaths>
+#include<memory>
 class Notification;
 
 namespace Ui {

@@ -3,6 +3,7 @@
 
 #include "Model/musiclist.h"
 #include "Notification/notification.h"
+#include<memory>
 
 enum LIST{
     FAVOR = 1,

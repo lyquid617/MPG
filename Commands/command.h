@@ -1,7 +1,7 @@
 ﻿#ifndef COMMAND_H
 #define COMMAND_H
 #include<QUrl>
-
+#include<memory>
 class Command
 {
 protected:
