@@ -134,15 +134,15 @@ void MainWindow::on_playmode_clicked()
     switch (playlist->playbackMode()) {
     case QMediaPlaylist::Loop:
         playlist->setPlaybackMode(QMediaPlaylist::Random);
-        ui->playmode->setStyleSheet(LoopStyle());
+        ui->playmode->setStyleSheet(RandomStyle());
         break;
     case QMediaPlaylist::Random:
         playlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
-        ui->playmode->setStyleSheet(RandomStyle());
+        ui->playmode->setStyleSheet(OneloopStyle());
         break;
     case QMediaPlaylist::CurrentItemInLoop:
         playlist->setPlaybackMode(QMediaPlaylist::Loop);
-        ui->playmode->setStyleSheet(OneloopStyle());
+        ui->playmode->setStyleSheet(LoopStyle());
         break;
     default:
         break;
@@ -154,13 +154,13 @@ void MainWindow::on_playmode_clicked()
 void MainWindow::on_skipforward_clicked()
 {
     playlist->next();
-    updateInfo();
+//    updateInfo();
 }
 void MainWindow::on_skipbackward_clicked()
 {
     playlist->previous();
     //playlist->previousIndex();
-    updateInfo();
+ //   updateInfo();
 }
 
 void MainWindow::on_Pause_clicked()
@@ -263,7 +263,7 @@ void MainWindow::on_volumeSlider_sliderReleased()
 
 }
 //双击播放音乐，单击理论上应该加深背景颜色。这就需要给每个单元格增加背景
-void MainWindow::on_musictable_cellDoubleClicked(int row, int column)
+void MainWindow::on_local_cellDoubleClicked(int row, int column)
 {
     playlist->setCurrentIndex(row);
     player->play();
@@ -278,15 +278,15 @@ void MainWindow::updatePauseButton()
         ui->Pause->setStyleSheet(PauseStyle());
 }
 
-void MainWindow::on_musictable_cellClicked(int row, int column)
+void MainWindow::on_local_cellClicked(int row, int column)
 {
     selected_row = row;
 }
 
-void MainWindow::on_list_cellClicked(int row, int column)
+void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
-    list_row = row;
-    ui->favor->setHidden(0-row);
-    ui->local->setHidden(1-row);
-    ui->history->setHidden(2-row);
+        list_row = currentRow;
+        ui->favor->setHidden(0-currentRow);
+        ui->local->setHidden(1-currentRow);
+        ui->history->setHidden(2-currentRow);
 }

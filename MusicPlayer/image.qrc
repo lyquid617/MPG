@@ -13,5 +13,6 @@
         <file>image/playlist.png</file>
         <file>image/addmusic.png</file>
         <file>image/deletemusic.png</file>
+        <file>image/addlist.png</file>
     </qresource>
 </RCC>

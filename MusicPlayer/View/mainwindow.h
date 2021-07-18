@@ -7,6 +7,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QMediaContent>
+#include <QTableWidgetItem>
+#include <QListWidgetItem>
 #include "myqss.h"
 #include <QDir>
 #include "Commands/command.h"
@@ -53,7 +55,7 @@ private slots:
 
     void on_volumeSlider_sliderReleased();
 
-    void on_musictable_cellDoubleClicked(int row, int column);
+    void on_local_cellDoubleClicked(int row, int column);
 
     void on_playmode_clicked();
     //manually added
@@ -61,9 +63,9 @@ private slots:
 
     void updatePauseButton();
 
-    void on_musictable_cellClicked(int row, int column);
+    void on_local_cellClicked(int row, int column);
 
-    void on_list_cellClicked(int row, int column);
+    void on_listWidget_currentRowChanged(int currentRow);
 
 private:
     Ui::MainWindow *ui;

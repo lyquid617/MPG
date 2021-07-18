@@ -210,7 +210,7 @@ border:none;
    <widget class="QTableWidget" name="local">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>300</x>
       <y>230</y>
       <width>361</width>
       <height>291</height>
@@ -354,35 +354,10 @@ border:none
      <string/>
     </property>
    </widget>
-   <widget class="QTableWidget" name="list">
-    <property name="geometry">
-     <rect>
-      <x>240</x>
-      <y>230</y>
-      <width>71</width>
-      <height>291</height>
-     </rect>
-    </property>
-    <row>
-     <property name="text">
-      <string>我喜欢</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>本地音乐</string>
-     </property>
-    </row>
-    <row>
-     <property name="text">
-      <string>最近播放</string>
-     </property>
-    </row>
-   </widget>
    <widget class="QTableWidget" name="favor">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>300</x>
       <y>230</y>
       <width>361</width>
       <height>291</height>
@@ -431,7 +406,7 @@ background:#A0A0A0;
    <widget class="QTableWidget" name="history">
     <property name="geometry">
      <rect>
-      <x>310</x>
+      <x>300</x>
       <y>230</y>
       <width>361</width>
       <height>291</height>
@@ -477,6 +452,45 @@ background:#A0A0A0;
      </property>
     </column>
    </widget>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>230</y>
+      <width>256</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <item>
+     <property name="text">
+      <string>我喜欢</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>本地音乐</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>历史记录</string>
+     </property>
+    </item>
+   </widget>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>volume</zorder>
+   <zorder>positionSlider</zorder>
+   <zorder>playmode</zorder>
+   <zorder>musicname</zorder>
+   <zorder>playlist</zorder>
+   <zorder>addMusic</zorder>
+   <zorder>volumeSlider</zorder>
+   <zorder>playprogress</zorder>
+   <zorder>deleteMusic</zorder>
+   <zorder>favor</zorder>
+   <zorder>history</zorder>
+   <zorder>listWidget</zorder>
+   <zorder>local</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
