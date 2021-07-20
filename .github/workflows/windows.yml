@@ -4,12 +4,26 @@ on:
   push:
     paths:
       - '*.pro'
-      - 'src/**'
+      - 'App/**'
+      - 'Commands/**'
+      - 'Model/**'
+      - 'Notification/**'
+      - 'View/**'
+      - 'ViewModel/**'
+      - 'image/**'
+      - '*.cpp'
       - '.github/workflows/windows.yml'
   pull_request:
     paths:
       - '*.pro'
-      - 'src/**'
+      - 'App/**'
+      - 'Commands/**'
+      - 'Model/**'
+      - 'Notification/**'
+      - 'View/**'
+      - 'ViewModel/**'
+      - 'image/**'
+      - '*.cpp'
       - '.github/workflows/windows.yml' 
 jobs:
   build:
