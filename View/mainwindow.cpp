@@ -36,17 +36,128 @@ MainWindow::MainWindow(QWidget *parent) :
     //lyq changed the ctor
 
     ui->volumeSlider->setHidden(true);
-
-    //attention
-
+    setFixedSize(1300,800);
+    setWindowFlags(Qt::FramelessWindowHint|windowFlags());//实现无边框 $
+    topwidget=new QWidget(this);
+    settopWidget(topwidget);
+    objectWidget=new Qbjectwidget(topwidget);
+    objectWidget->setGeometry(940,22,360,48);
+    redwidget=new QWidget(this);
+    setredWidget(redwidget);
     init_player();
     update_view_notification = std::static_pointer_cast<Notification, UpdateViewNotification>(std::shared_ptr<UpdateViewNotification>(new UpdateViewNotification(std::shared_ptr<MainWindow>(this))));
+    connect(objectWidget->closeButton,SIGNAL(clicked(bool)),this,SLOT(closeMainwindow()));
+    connect(objectWidget->MinButton,SIGNAL(clicked(bool)),this,SLOT(minMainwindow()));
+    connect(objectWidget->MinniButton,SIGNAL(clicked(bool)),this,SLOT(begainMinistyle()));
+}
 
+void MainWindow::settopWidget(QWidget *widget)
+{
+    topwidget->setGeometry(0,0,1300,65);
+    QPalette pal(widget->palette());
+    pal.setColor(QPalette::Background,QColor(50,50,50));
+    widget->setAutoFillBackground(true);
+    widget->setPalette(pal);
+    widget->show();
+}
+
+void MainWindow::setredWidget(QWidget *widget)
+{
+    redwidget->setGeometry(0,65,1300,4);
+    QPalette pal(widget->palette());
+    pal.setColor(QPalette::Background,QColor(161,11,11));
+    widget->setAutoFillBackground(true);
+    widget->setPalette(pal);
+    widget->show();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::closeMainwindow()
+{
+    this->setMinimumSize(0,0);
+   QPropertyAnimation *animation=new QPropertyAnimation(this,"geometry");
+   animation->setDuration(500);
+   animation->setStartValue(geometry());
+   animation->setEndValue(QRect(geometry().x(),geometry().y(),0,geometry().height()));
+   connect(animation,SIGNAL(finished()),this,SLOT(close()));
+   animation->start(QAbstractAnimation::DeleteWhenStopped);
+//   lrcshowwidget->close();
+}
+void MainWindow::minMainwindow()
+{
+    showMinimized();
+}
+
+void MainWindow::begainMinistyle()
+{
+    this->hide();
+    trayIcon=new QSystemTrayIcon(this);
+    QIcon icon=QIcon(":/image/image/wangyimini.png");
+    trayIcon->setIcon(icon);
+    trayIcon->setToolTip("网易云音乐");
+    connect(trayIcon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),this,SLOT(creativeTrayivon(QSystemTrayIcon::ActivationReason)));
+    trayIcon->show();
+}
+
+void MainWindow::creativeTrayivon(QSystemTrayIcon::ActivationReason reason)
+{
+    menu=new QMenu(this);
+    showMainAction=new QAction(this);
+    showMainAction->setText("显示主界面");
+    closeMainAction=new QAction(this);
+    closeMainAction->setText(tr("退出"));
+    menu->addAction(showMainAction);
+    menu->addSeparator();
+    menu->addAction(closeMainAction);
+    connect(showMainAction,SIGNAL(triggered(bool)),this,SLOT(show()));
+    connect(closeMainAction,SIGNAL(triggered(bool)),this,SLOT(close()));
+    trayIcon->setContextMenu(menu);
+    switch (reason) {
+    case QSystemTrayIcon::DoubleClick:
+        this->show();
+        break;
+    default:
+        break;
+    }
+}
+void MainWindow::mousePressEvent(QMouseEvent *event)
+{
+    if(event->pos().y()<69)
+    {
+        event->ignore();
+        if(event->button()==Qt::LeftButton)
+        {
+            m_pressed=true;
+            m_point=event->pos();
+        }
+    }
+
+}
+void MainWindow::mouseMoveEvent(QMouseEvent *event)
+{
+    if(event->pos().y()<69)
+    {
+            if(m_pressed)
+            {
+                move(event->pos()-m_point+pos());
+            }
+    }
+}
+void MainWindow::mouseReleaseEvent(QMouseEvent *event)
+{
+    Q_UNUSED(event);
+     if(event->pos().y()<69)
+     {
+         m_pressed=false;
+     }
+}
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    Q_UNUSED(event);
 }
 
 void MainWindow::init_player(){
@@ -290,3 +401,6 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         ui->local->setHidden(1-currentRow);
         ui->history->setHidden(2-currentRow);
 }
+
+
+

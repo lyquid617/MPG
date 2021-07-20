@@ -41,7 +41,8 @@ SOURCES += \
         ViewModel/addmusiccommand.cpp\
         Notification/notification.cpp \
     View/updateviewnotification.cpp \
-    ViewModel/updateinfonotification.cpp
+    ViewModel/updateinfonotification.cpp \
+    View/qbjectwidget.cpp
 
 
 
@@ -64,7 +65,8 @@ HEADERS += \
     Notification/notification.h \
     View/updateviewnotification.h \
     ViewModel/updateinfonotification.h \
-        myqss.h
+        myqss.h \
+    View/qbjectwidget.h
 
 FORMS += \
         mainwindow.ui

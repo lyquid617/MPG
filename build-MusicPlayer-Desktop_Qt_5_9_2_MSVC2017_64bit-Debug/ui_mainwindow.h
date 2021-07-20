@@ -147,7 +147,27 @@ public:
 ""));
         positionSlider = new QSlider(centralWidget);
         positionSlider->setObjectName(QStringLiteral("positionSlider"));
-        positionSlider->setGeometry(QRect(0, 610, 1200, 22));
+        positionSlider->setGeometry(QRect(0, 630, 1200, 22));
+        positionSlider->setStyleSheet(QLatin1String("\n"
+"\n"
+"QSlider::add-page:Horizontal#horizontalSlider_music\n"
+"{\n"
+"	background-color: rgb(69, 69, 70);height:5px;\n"
+"}\n"
+"QSlider::sub-page:Horizontal#horizontalSlider_music\n"
+"{\n"
+"	background-color: rgb(255, 0, 0);height:5px;\n"
+"}\n"
+"QSlider::handle:Horizontal#horizontalSlider_music\n"
+"{\n"
+"	width:14px;border-image: url(images/point_music.png);margin:-5 px -5px;\n"
+"}\n"
+"QSlider::groove:Horizontal#horizontalSlider_music\n"
+"{\n"
+"	background:rgb(0, 255, 0);height:5px;\n"
+"}\n"
+""));
+        positionSlider->setMaximum(240);
         positionSlider->setOrientation(Qt::Horizontal);
         playmode = new QPushButton(centralWidget);
         playmode->setObjectName(QStringLiteral("playmode"));
@@ -168,7 +188,7 @@ public:
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         local->setHorizontalHeaderItem(0, __qtablewidgetitem);
         local->setObjectName(QStringLiteral("local"));
-        local->setGeometry(QRect(300, 230, 361, 291));
+        local->setGeometry(QRect(270, 90, 981, 511));
         QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(1);
         sizePolicy.setVerticalStretch(1);
@@ -203,7 +223,7 @@ public:
 "}"));
         addMusic = new QPushButton(centralWidget);
         addMusic->setObjectName(QStringLiteral("addMusic"));
-        addMusic->setGeometry(QRect(460, 180, 113, 32));
+        addMusic->setGeometry(QRect(90, 500, 113, 32));
         addMusic->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-image:url(:/image/image/addmusic.png);\n"
 "background-repeat:norepeat;\n"
@@ -222,7 +242,7 @@ public:
         playprogress->setGeometry(QRect(20, 730, 121, 16));
         deleteMusic = new QPushButton(centralWidget);
         deleteMusic->setObjectName(QStringLiteral("deleteMusic"));
-        deleteMusic->setGeometry(QRect(400, 180, 91, 31));
+        deleteMusic->setGeometry(QRect(180, 500, 91, 31));
         deleteMusic->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-image:url(:/image/image/deletemusic.png);\n"
 "background-repeat:norepeat;\n"
@@ -286,7 +306,7 @@ public:
         new QListWidgetItem(listWidget);
         new QListWidgetItem(listWidget);
         listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(50, 230, 256, 291));
+        listWidget->setGeometry(QRect(20, 90, 256, 401));
         MainWindow->setCentralWidget(centralWidget);
         horizontalLayoutWidget->raise();
         volume->raise();
