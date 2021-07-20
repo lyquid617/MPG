@@ -163,10 +163,34 @@ border:none;
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>610</y>
+      <y>630</y>
       <width>1200</width>
       <height>22</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">
+
+QSlider::add-page:Horizontal#horizontalSlider_music
+{
+	background-color: rgb(69, 69, 70);height:5px;
+}
+QSlider::sub-page:Horizontal#horizontalSlider_music
+{
+	background-color: rgb(255, 0, 0);height:5px;
+}
+QSlider::handle:Horizontal#horizontalSlider_music
+{
+	width:14px;border-image: url(images/point_music.png);margin:-5 px -5px;
+}
+QSlider::groove:Horizontal#horizontalSlider_music
+{
+	background:rgb(0, 255, 0);height:5px;
+}
+</string>
+    </property>
+    <property name="maximum">
+     <number>240</number>
     </property>
     <property name="orientation">
      <enum>Qt::Horizontal</enum>
@@ -210,10 +234,10 @@ border:none;
    <widget class="QTableWidget" name="local">
     <property name="geometry">
      <rect>
-      <x>300</x>
-      <y>230</y>
-      <width>361</width>
-      <height>291</height>
+      <x>270</x>
+      <y>90</y>
+      <width>981</width>
+      <height>511</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -282,8 +306,8 @@ border:none
    <widget class="QPushButton" name="addMusic">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>180</y>
+      <x>90</x>
+      <y>500</y>
       <width>113</width>
       <height>32</height>
      </rect>
@@ -334,8 +358,8 @@ border:none
    <widget class="QPushButton" name="deleteMusic">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>180</y>
+      <x>180</x>
+      <y>500</y>
       <width>91</width>
       <height>31</height>
      </rect>
@@ -455,10 +479,10 @@ background:#A0A0A0;
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>230</y>
+      <x>20</x>
+      <y>90</y>
       <width>256</width>
-      <height>291</height>
+      <height>401</height>
      </rect>
     </property>
     <item>

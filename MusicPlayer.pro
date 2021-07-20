@@ -42,7 +42,8 @@ SOURCES += \
         Notification/notification.cpp \
     View/updateviewnotification.cpp \
     ViewModel/updateinfonotification.cpp \
-    View/qbjectwidget.cpp
+    View/qbjectwidget.cpp \
+    View/left_tablewidget.cpp
 
 
 
@@ -66,7 +67,8 @@ HEADERS += \
     View/updateviewnotification.h \
     ViewModel/updateinfonotification.h \
         myqss.h \
-    View/qbjectwidget.h
+    View/qbjectwidget.h \
+    View/left_tablewidget.h
 
 FORMS += \
         mainwindow.ui

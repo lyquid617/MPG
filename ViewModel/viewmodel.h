@@ -1,6 +1,10 @@
 ﻿#ifndef VIEWMODEL_H
 #define VIEWMODEL_H
 
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
+
 #include "Model/musiclist.h"
 #include "Notification/notification.h"
 #include<memory>

@@ -1,6 +1,10 @@
 ﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#if _MSC_VER >= 1600
+#pragma execution_character_set("utf-8")
+#endif
+
 #include <QMainWindow>
 #include <QString>
 #include <QTimer>
@@ -21,6 +25,9 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include "qbjectwidget.h"
+
+
+
 class Notification;
 
 namespace Ui {
