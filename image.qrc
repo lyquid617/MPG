@@ -24,5 +24,7 @@
         <file>image/min_pressed.png</file>
         <file>image/mini_normal.png</file>
         <file>image/mini_pressed.png</file>
+        <file>image/wangyiyunicon.png</file>
+        <file>image/wangyimini.png</file>
     </qresource>
 </RCC>
