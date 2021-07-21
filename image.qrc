@@ -14,6 +14,27 @@
         <file>image/addmusic.png</file>
         <file>image/deletemusic.png</file>
         <file>image/addlist.png</file>
+
         <file>image/album.png</file>
+
+        <file>image/close_normal.png</file>
+        <file>image/close_pressed.png</file>
+        <file>image/max_normal .png</file>
+        <file>image/max_normal.png</file>
+        <file>image/max_press.png</file>
+        <file>image/max_pressed.png</file>
+        <file>image/min_normal.png</file>
+        <file>image/min_pressed.png</file>
+        <file>image/mini_normal.png</file>
+        <file>image/mini_pressed.png</file>
+        <file>image/wangyiyunicon .png</file>
+        <file>image/wangyimini.png</file>
+        <file>image/findMusic.png</file>
+        <file>image/localmusic.png</file>
+        <file>image/mmmmm.jpg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>image/localmusic.png</file>
+
     </qresource>
 </RCC>

@@ -17,8 +17,9 @@ void RoundImageWidget::startRotateAnimation()
     if (nullptr ==  m_timer) {
 
         // 通过定时器去旋转图片，可根据自身需求去设定旋转速度
-        int speed = 150;
-        qreal angle = 1.0;
+        //speed 是频率
+        int speed = 50;
+        qreal angle = 0.5;
 
         m_timer = new QTimer(this);
         m_timer->setInterval(speed);

@@ -1,3 +1,4 @@
+
 #-------------------------------------------------
 #
 # Project created by QtCreator 2021-07-11T12:18:11
@@ -42,6 +43,8 @@ SOURCES += \
     ViewModel/updateinfonotification.cpp \
     View/pushbuttonwithimage.cpp \
     View/roundimagewidget.cpp \
+    View/qbjectwidget.cpp \
+    View/left_tablewidget.cpp\
     View/rotatewindow.cpp
 
 
@@ -68,11 +71,13 @@ HEADERS += \
         myqss.h \
     View/pushbuttonwithimage.h \
     View/roundimagewidget.h \
+    View/qbjectwidget.h \
+    View/left_tablewidget.h \
     View/rotatewindow.h
 
 FORMS += \
         mainwindow.ui \
-    rotatewindow.ui
+    View/rotatewindow.ui
 
 DISTFILES += \
     image/ios-pause.png \

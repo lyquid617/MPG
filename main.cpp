@@ -6,8 +6,8 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    //MainWindow w;
-    //w.show();
+    QFont f("Microsoft YaHei");
+    a.setFont(f);
     App* app = new App();
     app->run();
 

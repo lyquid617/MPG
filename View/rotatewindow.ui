@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>RotateWindow</class>
- <widget class="QMainWindow" name="RotateWindow">
+ <widget class="QWidget" name="RotateWindow">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>130</width>
+    <height>130</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Form</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
  </widget>
  <resources/>
  <connections/>
