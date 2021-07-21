@@ -12,6 +12,7 @@ on:
       - 'ViewModel/**'
       - 'image/**'
       - '*.cpp'
+      - '*.qrc'
       - '.github/workflows/windows.yml'
   pull_request:
     paths:
@@ -24,6 +25,7 @@ on:
       - 'ViewModel/**'
       - 'image/**'
       - '*.cpp'
+      - '*.qrc'
       - '.github/workflows/windows.yml' 
 jobs:
   build:
