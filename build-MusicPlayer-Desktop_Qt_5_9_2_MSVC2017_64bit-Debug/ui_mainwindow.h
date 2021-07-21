@@ -16,11 +16,11 @@
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QWidget>
 
@@ -41,21 +41,24 @@ public:
     QSlider *positionSlider;
     QPushButton *playmode;
     QLabel *musicname;
-    QTableWidget *local;
     QPushButton *playlist;
-    QPushButton *addMusic;
-    QSlider *volumeSlider;
     QLabel *playprogress;
     QPushButton *deleteMusic;
-    QTableWidget *favor;
-    QTableWidget *history;
-    QListWidget *listWidget;
+    QStackedWidget *stackedWidget;
+    QWidget *page;
+    QTableWidget *backGround;
+    QWidget *page_2;
+    QTableWidget *backGround2;
+    QTableWidget *local;
+    QPushButton *addMusic;
+    QLabel *label;
+    QSlider *volumeSlider;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1200, 800);
+        MainWindow->resize(1300, 800);
         MainWindow->setStyleSheet(QLatin1String("QMainWindow\n"
 "{\n"
 "background-image: url(:/image/image/background.png);\n"
@@ -136,7 +139,7 @@ public:
         playcontrol->setStretch(4, 1);
         volume = new QPushButton(centralWidget);
         volume->setObjectName(QStringLiteral("volume"));
-        volume->setGeometry(QRect(1120, 700, 32, 32));
+        volume->setGeometry(QRect(1200, 710, 32, 32));
         volume->setStyleSheet(QLatin1String("QPushButton\n"
 "{\n"
 "background-image: url(:/image/image/volume.png);\n"
@@ -147,7 +150,7 @@ public:
 ""));
         positionSlider = new QSlider(centralWidget);
         positionSlider->setObjectName(QStringLiteral("positionSlider"));
-        positionSlider->setGeometry(QRect(0, 630, 1200, 22));
+        positionSlider->setGeometry(QRect(0, 630, 1291, 22));
         positionSlider->setStyleSheet(QLatin1String("\n"
 "\n"
 "QSlider::add-page:Horizontal#horizontalSlider_music\n"
@@ -182,34 +185,6 @@ public:
         musicname = new QLabel(centralWidget);
         musicname->setObjectName(QStringLiteral("musicname"));
         musicname->setGeometry(QRect(20, 700, 401, 20));
-        local = new QTableWidget(centralWidget);
-        if (local->columnCount() < 1)
-            local->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        local->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        local->setObjectName(QStringLiteral("local"));
-        local->setGeometry(QRect(270, 90, 981, 511));
-        QSizePolicy sizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(1);
-        sizePolicy.setVerticalStretch(1);
-        sizePolicy.setHeightForWidth(local->sizePolicy().hasHeightForWidth());
-        local->setSizePolicy(sizePolicy);
-        local->setStyleSheet(QLatin1String("QTableWidget{\n"
-"alternate-background-color:#E0E0E0;\n"
-"background:#FFFFFFFF;\n"
-"}\n"
-"\n"
-"QTableWidget::item:selected {\n"
-"background:#C0C0C0;               \n"
-"}\n"
-"QTableWidget::item:hover {\n"
-"background:#A0A0A0;               \n"
-"}"));
-        local->setAlternatingRowColors(true);
-        local->horizontalHeader()->setDefaultSectionSize(100);
-        local->horizontalHeader()->setStretchLastSection(true);
-        local->verticalHeader()->setDefaultSectionSize(30);
-        local->verticalHeader()->setStretchLastSection(false);
         playlist = new QPushButton(centralWidget);
         playlist->setObjectName(QStringLiteral("playlist"));
         playlist->setGeometry(QRect(980, 700, 113, 32));
@@ -221,28 +196,12 @@ public:
 "\n"
 "\n"
 "}"));
-        addMusic = new QPushButton(centralWidget);
-        addMusic->setObjectName(QStringLiteral("addMusic"));
-        addMusic->setGeometry(QRect(90, 500, 113, 32));
-        addMusic->setStyleSheet(QLatin1String("QPushButton{\n"
-"background-image:url(:/image/image/addmusic.png);\n"
-"background-repeat:norepeat;\n"
-"background-position:center;\n"
-"border:none\n"
-"\n"
-"\n"
-"}"));
-        volumeSlider = new QSlider(centralWidget);
-        volumeSlider->setObjectName(QStringLiteral("volumeSlider"));
-        volumeSlider->setGeometry(QRect(1130, 530, 22, 160));
-        volumeSlider->setMaximum(100);
-        volumeSlider->setOrientation(Qt::Vertical);
         playprogress = new QLabel(centralWidget);
         playprogress->setObjectName(QStringLiteral("playprogress"));
         playprogress->setGeometry(QRect(20, 730, 121, 16));
         deleteMusic = new QPushButton(centralWidget);
         deleteMusic->setObjectName(QStringLiteral("deleteMusic"));
-        deleteMusic->setGeometry(QRect(180, 500, 91, 31));
+        deleteMusic->setGeometry(QRect(220, 670, 91, 31));
         deleteMusic->setStyleSheet(QLatin1String("QPushButton{\n"
 "background-image:url(:/image/image/deletemusic.png);\n"
 "background-repeat:norepeat;\n"
@@ -251,18 +210,22 @@ public:
 "\n"
 "\n"
 "}"));
-        favor = new QTableWidget(centralWidget);
-        if (favor->columnCount() < 1)
-            favor->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        favor->setHorizontalHeaderItem(0, __qtablewidgetitem1);
-        favor->setObjectName(QStringLiteral("favor"));
-        favor->setGeometry(QRect(300, 230, 361, 291));
-        sizePolicy.setHeightForWidth(favor->sizePolicy().hasHeightForWidth());
-        favor->setSizePolicy(sizePolicy);
-        favor->setStyleSheet(QLatin1String("QTableWidget{\n"
-"alternate-background-color:#E0E0E0;\n"
-"background:#FFFFFFFF;\n"
+        stackedWidget = new QStackedWidget(centralWidget);
+        stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
+        stackedWidget->setGeometry(QRect(220, 60, 1081, 571));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        backGround = new QTableWidget(page);
+        backGround->setObjectName(QStringLiteral("backGround"));
+        backGround->setGeometry(QRect(30, 0, 1051, 581));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(backGround->sizePolicy().hasHeightForWidth());
+        backGround->setSizePolicy(sizePolicy);
+        backGround->setStyleSheet(QLatin1String("QTableWidget{\n"
+"	background-image: url(:/image/image/mmmmm.jpg);\n"
+"\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
@@ -271,23 +234,21 @@ public:
 "QTableWidget::item:hover {\n"
 "background:#A0A0A0;               \n"
 "}"));
-        favor->setAlternatingRowColors(true);
-        favor->horizontalHeader()->setDefaultSectionSize(100);
-        favor->horizontalHeader()->setStretchLastSection(true);
-        favor->verticalHeader()->setDefaultSectionSize(30);
-        favor->verticalHeader()->setStretchLastSection(false);
-        history = new QTableWidget(centralWidget);
-        if (history->columnCount() < 1)
-            history->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        history->setHorizontalHeaderItem(0, __qtablewidgetitem2);
-        history->setObjectName(QStringLiteral("history"));
-        history->setGeometry(QRect(300, 230, 361, 291));
-        sizePolicy.setHeightForWidth(history->sizePolicy().hasHeightForWidth());
-        history->setSizePolicy(sizePolicy);
-        history->setStyleSheet(QLatin1String("QTableWidget{\n"
-"alternate-background-color:#E0E0E0;\n"
-"background:#FFFFFFFF;\n"
+        backGround->setAlternatingRowColors(true);
+        backGround->horizontalHeader()->setDefaultSectionSize(100);
+        backGround->horizontalHeader()->setStretchLastSection(true);
+        backGround->verticalHeader()->setDefaultSectionSize(30);
+        backGround->verticalHeader()->setStretchLastSection(false);
+        stackedWidget->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        backGround2 = new QTableWidget(page_2);
+        backGround2->setObjectName(QStringLiteral("backGround2"));
+        backGround2->setGeometry(QRect(30, 0, 1051, 581));
+        sizePolicy.setHeightForWidth(backGround2->sizePolicy().hasHeightForWidth());
+        backGround2->setSizePolicy(sizePolicy);
+        backGround2->setStyleSheet(QLatin1String("QTableWidget{\n"
+"background:#2B2B2B;\n"
 "}\n"
 "\n"
 "QTableWidget::item:selected {\n"
@@ -296,32 +257,36 @@ public:
 "QTableWidget::item:hover {\n"
 "background:#A0A0A0;               \n"
 "}"));
-        history->setAlternatingRowColors(true);
-        history->horizontalHeader()->setDefaultSectionSize(100);
-        history->horizontalHeader()->setStretchLastSection(true);
-        history->verticalHeader()->setDefaultSectionSize(30);
-        history->verticalHeader()->setStretchLastSection(false);
-        listWidget = new QListWidget(centralWidget);
-        new QListWidgetItem(listWidget);
-        new QListWidgetItem(listWidget);
-        new QListWidgetItem(listWidget);
-        listWidget->setObjectName(QStringLiteral("listWidget"));
-        listWidget->setGeometry(QRect(20, 90, 256, 401));
+        backGround2->setAlternatingRowColors(true);
+        backGround2->horizontalHeader()->setDefaultSectionSize(100);
+        backGround2->horizontalHeader()->setStretchLastSection(true);
+        backGround2->verticalHeader()->setDefaultSectionSize(30);
+        backGround2->verticalHeader()->setStretchLastSection(false);
+        local = new QTableWidget(page_2);
+        local->setObjectName(QStringLiteral("local"));
+        local->setGeometry(QRect(80, 200, 961, 371));
+        addMusic = new QPushButton(page_2);
+        addMusic->setObjectName(QStringLiteral("addMusic"));
+        addMusic->setGeometry(QRect(310, 90, 113, 32));
+        addMusic->setStyleSheet(QLatin1String("QPushButton{\n"
+"background-image:url(:/image/image/addmusic.png);\n"
+"background-repeat:norepeat;\n"
+"background-position:center;\n"
+"border:none\n"
+"\n"
+"\n"
+"}"));
+        label = new QLabel(page_2);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(120, 70, 131, 61));
+        label->setStyleSheet(QStringLiteral("image: url(:/image/image/localmusic.png);"));
+        stackedWidget->addWidget(page_2);
+        volumeSlider = new QSlider(centralWidget);
+        volumeSlider->setObjectName(QStringLiteral("volumeSlider"));
+        volumeSlider->setGeometry(QRect(1210, 540, 22, 160));
+        volumeSlider->setMaximum(100);
+        volumeSlider->setOrientation(Qt::Vertical);
         MainWindow->setCentralWidget(centralWidget);
-        horizontalLayoutWidget->raise();
-        volume->raise();
-        positionSlider->raise();
-        playmode->raise();
-        musicname->raise();
-        playlist->raise();
-        addMusic->raise();
-        volumeSlider->raise();
-        playprogress->raise();
-        deleteMusic->raise();
-        favor->raise();
-        history->raise();
-        listWidget->raise();
-        local->raise();
 
         retranslateUi(MainWindow);
 
@@ -337,27 +302,11 @@ public:
         volume->setText(QString());
         playmode->setText(QString());
         musicname->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem = local->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\234\254\345\234\260\346\255\214\346\233\262", Q_NULLPTR));
         playlist->setText(QString());
-        addMusic->setText(QString());
         playprogress->setText(QApplication::translate("MainWindow", "00:00 / 00:00", Q_NULLPTR));
         deleteMusic->setText(QString());
-        QTableWidgetItem *___qtablewidgetitem1 = favor->horizontalHeaderItem(0);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "\346\210\221\345\226\234\346\254\242", Q_NULLPTR));
-        QTableWidgetItem *___qtablewidgetitem2 = history->horizontalHeaderItem(0);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "\346\234\200\350\277\221\346\222\255\346\224\276", Q_NULLPTR));
-
-        const bool __sortingEnabled = listWidget->isSortingEnabled();
-        listWidget->setSortingEnabled(false);
-        QListWidgetItem *___qlistwidgetitem = listWidget->item(0);
-        ___qlistwidgetitem->setText(QApplication::translate("MainWindow", "\346\210\221\345\226\234\346\254\242", Q_NULLPTR));
-        QListWidgetItem *___qlistwidgetitem1 = listWidget->item(1);
-        ___qlistwidgetitem1->setText(QApplication::translate("MainWindow", "\346\234\254\345\234\260\351\237\263\344\271\220", Q_NULLPTR));
-        QListWidgetItem *___qlistwidgetitem2 = listWidget->item(2);
-        ___qlistwidgetitem2->setText(QApplication::translate("MainWindow", "\345\216\206\345\217\262\350\256\260\345\275\225", Q_NULLPTR));
-        listWidget->setSortingEnabled(__sortingEnabled);
-
+        addMusic->setText(QString());
+        label->setText(QString());
     } // retranslateUi
 
 };

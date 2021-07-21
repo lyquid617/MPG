@@ -32,7 +32,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
+    ui->local->setColumnCount(1);
+    ui->local->setColumnWidth(0,300);
     //lyq changed the ctor
 
     ui->volumeSlider->setHidden(true);
@@ -42,9 +43,20 @@ MainWindow::MainWindow(QWidget *parent) :
     settopWidget(topwidget);
     objectWidget=new Qbjectwidget(topwidget);
     objectWidget->setGeometry(940,22,360,48);
+    leftwidget=new QWidget(this);
+    setleftWidget(leftwidget);
     redwidget=new QWidget(this);
     setredWidget(redwidget);
+    downwidget=new QWidget(this);
+    setdownWidget(downwidget);
+    lefttableWidget=new left_tablewidget(leftwidget);
+    lefttableWidget->setGeometry(0,0,260,597);
+    connect(lefttableWidget,&QTableWidget::currentCellChanged,ui->stackedWidget,&QStackedWidget::setCurrentIndex);
     init_player();
+    wangyi_label=new QLabel(this);
+    QPixmap pix(":/image/image/wangyiyunicon .png");
+    settoplightIcon(wangyi_label,pix);
+
     update_view_notification = std::static_pointer_cast<Notification, UpdateViewNotification>(std::shared_ptr<UpdateViewNotification>(new UpdateViewNotification(std::shared_ptr<MainWindow>(this))));
     connect(objectWidget->closeButton,SIGNAL(clicked(bool)),this,SLOT(closeMainwindow()));
     connect(objectWidget->MinButton,SIGNAL(clicked(bool)),this,SLOT(minMainwindow()));
@@ -69,6 +81,32 @@ void MainWindow::setredWidget(QWidget *widget)
     widget->setAutoFillBackground(true);
     widget->setPalette(pal);
     widget->show();
+}
+void MainWindow::setleftWidget(QWidget *widget)
+{
+    widget->setGeometry(0,69,250,565);//661
+    QPalette pal(widget->palette());
+    pal.setColor(QPalette::Background,QColor(43,43,43));
+    widget->setAutoFillBackground(true);
+    widget->setPalette(pal);
+    widget->show();
+}
+
+void MainWindow::setdownWidget(QWidget *widget)
+{
+    widget->setGeometry(0,730,1300,70);
+    QPalette pal(widget->palette());
+    pal.setColor(QPalette::Background,QColor(50,50,50));
+    widget->setAutoFillBackground(true);
+    widget->setPalette(pal);
+    widget->show();
+}
+
+void MainWindow::settoplightIcon(QLabel *label, QPixmap pix)
+{
+    wangyi_label->setPixmap(pix);
+    label->setGeometry(0,0,pix.width(),pix.height());
+    label->show();
 }
 
 MainWindow::~MainWindow()
@@ -219,9 +257,9 @@ void MainWindow::update(QStringList lst){
 
     QTableWidget *tmp = ui->local;
     switch (list_row) {
-    case 0: tmp = ui->favor;break;
-    case 1: tmp = ui->local;break;
-    case 2: tmp = ui->history;break;
+//    case 0: tmp = ui->favor;break;
+//    case 1: tmp = ui->local;break;
+//    case 2: tmp = ui->history;break;
 
     }
     for(int i = 0;i<lst.size();i++){
@@ -397,9 +435,9 @@ void MainWindow::on_local_cellClicked(int row, int column)
 void MainWindow::on_listWidget_currentRowChanged(int currentRow)
 {
         list_row = currentRow;
-        ui->favor->setHidden(0-currentRow);
-        ui->local->setHidden(1-currentRow);
-        ui->history->setHidden(2-currentRow);
+//        ui->favor->setHidden(0-currentRow);
+//        ui->local->setHidden(1-currentRow);
+//        ui->history->setHidden(2-currentRow);
 }
 
 

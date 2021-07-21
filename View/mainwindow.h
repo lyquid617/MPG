@@ -25,6 +25,7 @@
 #include <QSystemTrayIcon>
 #include <QMenu>
 #include "qbjectwidget.h"
+#include "left_tablewidget.h"
 
 
 
@@ -42,10 +43,13 @@ public:
     QWidget *topwidget;
     Qbjectwidget *objectWidget;//关闭等
     QWidget *redwidget;
+    QWidget *downwidget;
     QMenu *menu;//托盘菜单
     QAction *showMainAction;//显示界面
     QAction *closeMainAction;//关闭程序
-
+    left_tablewidget *lefttableWidget;
+    QWidget *leftwidget;
+    QLabel *wangyi_label;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     void init_player();
@@ -57,11 +61,14 @@ public:
     QString formatTime(int ms);
 private:
     void settopWidget(QWidget* widget);//绘制上方界面
+    void setleftWidget(QWidget* widget);
+    void setdownWidget(QWidget* widget);
     void closeEvent(QCloseEvent *event);
     void mousePressEvent(QMouseEvent* event);
     void mouseReleaseEvent(QMouseEvent* event);
     void mouseMoveEvent(QMouseEvent* event);//设置窗体可移动
     void setredWidget(QWidget *widget);//绘制红色线条
+    void settoplightIcon(QLabel *label,QPixmap pix);
 private slots:
     //automatic generated
     void closeMainwindow();//关闭程序

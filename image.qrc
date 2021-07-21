@@ -26,5 +26,11 @@
         <file>image/mini_pressed.png</file>
         <file>image/wangyiyunicon .png</file>
         <file>image/wangyimini.png</file>
+        <file>image/findMusic.png</file>
+        <file>image/localmusic.png</file>
+        <file>image/mmmmm.jpg</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>image/localmusic.png</file>
     </qresource>
 </RCC>
