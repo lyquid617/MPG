@@ -67,19 +67,24 @@ void MainWindow::init_player(){
     slidertimer->setTimerType(Qt::PreciseTimer);
 
 
+    roundImageWidget = new RoundImageWidget(this);
+    roundImageWidget->setGeometry(100, 100, 300, 300);
+
+
+
+
     connect(player, &QMediaPlayer::stateChanged, this, [=]()
     {
-        qDebug() <<"the program crashed?"<<endl;
-
         //频率为1s刷新一次，可能导致最后一秒的进度没算进去
-        if(player->state() == QMediaPlayer::PlayingState)slidertimer->start(1000);
+        if(player->state() == QMediaPlayer::PlayingState)slidertimer->start(500);
         else slidertimer->stop();
+
     });
 
     connect(slidertimer, &QTimer::timeout, this, [=]()
     {
         int progress = player->position();
-        ui->positionSlider->setValue(progress * ui->positionSlider->maximum() / player->duration());
+        ui->positionSlider->setValue(progress);
 
         ui->playprogress->setText(formatTime(player->position()) + " / " + formatTime(player->duration()));
 
@@ -87,6 +92,9 @@ void MainWindow::init_player(){
     //connections
     //connect(ui->Pause,&QPushButton::clicked,this,&MainWindow::on_Pause_clicked);
     connect(player,&QMediaPlayer::stateChanged,this,&MainWindow::updatePauseButton);
+    //this signal have some problem, though the program can run
+    connect(player,&QMediaPlayer::metaDataAvailableChanged,this,&MainWindow::updateInfo);
+
 
 }
 
@@ -118,10 +126,8 @@ void MainWindow::update(QStringList lst){
         //just simply slice the Url, you can do it further by analyse the Url
         QString s = lst[i];
         QTableWidgetItem *itemName = new QTableWidgetItem(s.mid(s.lastIndexOf("/")+1));
-
         itemName->setFlags((Qt::ItemFlag)32);
         tmp->setItem(i, 0, itemName);
-
     }
     //单元格大小设置
     tmp->verticalHeader()->setSectionResizeMode(QHeaderView::Stretch);
@@ -154,13 +160,12 @@ void MainWindow::on_playmode_clicked()
 void MainWindow::on_skipforward_clicked()
 {
     playlist->next();
-//    updateInfo();
+
 }
 void MainWindow::on_skipbackward_clicked()
 {
     playlist->previous();
-    //playlist->previousIndex();
- //   updateInfo();
+
 }
 
 void MainWindow::on_Pause_clicked()
@@ -182,15 +187,34 @@ void MainWindow::on_Pause_clicked()
 
 //in this slot we update the music name and further cover
 void MainWindow::updateInfo(){
+
+    ui->positionSlider->setRange(0,player->duration());
+    ui->albumcover->setPixmap(QPixmap(":/image/image/album.png"));
+    return;
+    //盗版音乐的话，metadate是不会available的。
+    if(!player->isMetaDataAvailable()){
+        //但是ui还是要改
+        ui->musicname->setText("pirate muisc");
+        ui->albumcover->setPixmap(QPixmap(":/image/image/album.png"));
+        return;
+    }
+    qDebug() <<player->availableMetaData()<<endl;
+    //QUrl url = player->metaData(QMediaMetaData::PosterUrl).value<QUrl>();
+    //qDebug() <<url<<endl;
+
+
     QString info="";
-    QString author = player->metaData(QStringLiteral("Author")).toStringList().join(",");
-    info.append(author);
     QString title = player->metaData(QStringLiteral("Title")).toString();
-    QString albumTitle = player->metaData(QStringLiteral("AlbumTitle")).toString();
-    info.append(" - "+title);
-    qDebug() << info <<endl;
-    //info.append(" ["+formatTime(player->duration())+"]");
+    info.append(title);
     ui->musicname->setText(info);
+
+    qDebug() << playlist->currentIndex()<<"  "<<   info  <<endl;
+
+//    QPixmap pix;
+//    pix.loadFromData(data);
+//    ui->albumcover->setPixmap(pix);
+
+
 }
 
 
@@ -217,8 +241,6 @@ void MainWindow::on_addMusic_clicked()
        QStringList mscnames = fileDialog.selectedFiles();
 
        for(int i = 0;i<urls.size();i++){
-           //addMusic(urls[i]);
-           qDebug() << urls[i]<<endl;
            playlist->addMedia(QUrl(urls[i]));
            addmusiccommand->exec(&urls[i],list_row);
        }
@@ -289,4 +311,13 @@ void MainWindow::on_listWidget_currentRowChanged(int currentRow)
         ui->favor->setHidden(0-currentRow);
         ui->local->setHidden(1-currentRow);
         ui->history->setHidden(2-currentRow);
+}
+
+
+void MainWindow::on_albumcover_clicked()
+{
+    //show the window
+    if(!rotate && player->state() == QMediaPlayer::PlayingState)  roundImageWidget->startRotateAnimation();
+    else roundImageWidget->stopRotateAnimation();
+
 }

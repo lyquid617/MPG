@@ -7,14 +7,19 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QMediaContent>
+#include <QMediaMetaData>
 #include <QTableWidgetItem>
 #include <QListWidgetItem>
+#include <QPixmap>
+#include <QImage>
 #include "myqss.h"
 #include <QDir>
 #include "Commands/command.h"
 #include <QFileDialog>
 #include <QStandardPaths>
-#include<memory>
+#include <memory>
+#include <View/roundimagewidget.h>
+
 class Notification;
 
 namespace Ui {
@@ -33,7 +38,7 @@ public:
     void set_addMusic_command(std::shared_ptr<Command> cmd);
     void set_deleteMusic_command(std::shared_ptr<Command> cmd);
     std::shared_ptr<Notification> get_update_notification();
-    void update(QStringList );
+    void update(QStringList);
     QString formatTime(int ms);
 
 private slots:
@@ -68,14 +73,19 @@ private slots:
 
     void on_listWidget_currentRowChanged(int currentRow);
 
+    void on_albumcover_clicked();
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;
     QMediaPlaylist *playlist;
+    RoundImageWidget * roundImageWidget;
 
     int selected_row = -1;
 
     int list_row = 1;
+
+    bool rotate = false;
 
     std::shared_ptr<Command> addmusiccommand;
     std::shared_ptr<Command> deletemusiccommand;

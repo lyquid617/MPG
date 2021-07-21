@@ -197,9 +197,9 @@ border:none;
    <widget class="QLabel" name="musicname">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>700</y>
-      <width>401</width>
+      <x>160</x>
+      <y>690</y>
+      <width>251</width>
       <height>20</height>
      </rect>
     </property>
@@ -321,8 +321,8 @@ border:none
    <widget class="QLabel" name="playprogress">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>730</y>
+      <x>160</x>
+      <y>720</y>
       <width>121</width>
       <height>16</height>
      </rect>
@@ -477,6 +477,29 @@ background:#A0A0A0;
      </property>
     </item>
    </widget>
+   <widget class="PushButtonWithImage" name="albumcover">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>650</y>
+      <width>128</width>
+      <height>128</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="RoundImageWidget" name="widget" native="true">
+    <property name="geometry">
+     <rect>
+      <x>260</x>
+      <y>30</y>
+      <width>111</width>
+      <height>111</height>
+     </rect>
+    </property>
+   </widget>
    <zorder>horizontalLayoutWidget</zorder>
    <zorder>volume</zorder>
    <zorder>positionSlider</zorder>
@@ -491,9 +514,24 @@ background:#A0A0A0;
    <zorder>history</zorder>
    <zorder>listWidget</zorder>
    <zorder>local</zorder>
+   <zorder>albumcover</zorder>
+   <zorder>widget</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>PushButtonWithImage</class>
+   <extends>QPushButton</extends>
+   <header>pushbuttonwithimage.h</header>
+  </customwidget>
+  <customwidget>
+   <class>RoundImageWidget</class>
+   <extends>QWidget</extends>
+   <header>roundimagewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

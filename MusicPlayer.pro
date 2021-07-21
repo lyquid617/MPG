@@ -24,8 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
-
-
 SOURCES += \
     ViewModel/deletemusiccommand.cpp \
         main.cpp \
@@ -41,7 +39,10 @@ SOURCES += \
         ViewModel/addmusiccommand.cpp\
         Notification/notification.cpp \
     View/updateviewnotification.cpp \
-    ViewModel/updateinfonotification.cpp
+    ViewModel/updateinfonotification.cpp \
+    View/pushbuttonwithimage.cpp \
+    View/roundimagewidget.cpp \
+    View/rotatewindow.cpp
 
 
 
@@ -64,10 +65,14 @@ HEADERS += \
     Notification/notification.h \
     View/updateviewnotification.h \
     ViewModel/updateinfonotification.h \
-        myqss.h
+        myqss.h \
+    View/pushbuttonwithimage.h \
+    View/roundimagewidget.h \
+    View/rotatewindow.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    rotatewindow.ui
 
 DISTFILES += \
     image/ios-pause.png \

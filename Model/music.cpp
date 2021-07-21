@@ -20,6 +20,7 @@ void Music::refreshInfo()
         title = tempPlayer.metaData(QStringLiteral("Title")).toString();
         albumTitle = tempPlayer.metaData(QStringLiteral("AlbumTitle")).toString();
         audioBitRate = tempPlayer.metaData(QStringLiteral("AudioBitRate")).toInt();
+
         duration=tempPlayer.duration();
     }
 }
