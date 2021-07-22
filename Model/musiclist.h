@@ -21,7 +21,7 @@ public:
     //delete
     void deleteMusic(int index);
 
-
+    int size();
     void clear();
     void set_update_info_notification(shared_ptr<Notification> noti);
     //void notify();

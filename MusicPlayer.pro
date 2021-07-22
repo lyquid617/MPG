@@ -45,7 +45,8 @@ SOURCES += \
     View/roundimagewidget.cpp \
     View/qbjectwidget.cpp \
     View/left_tablewidget.cpp\
-    View/rotatewindow.cpp
+    View/rotatewindow.cpp\
+View/irregularimagewidget.cpp
 
 
 
@@ -73,7 +74,8 @@ HEADERS += \
     View/roundimagewidget.h \
     View/qbjectwidget.h \
     View/left_tablewidget.h \
-    View/rotatewindow.h
+    View/rotatewindow.h\
+View/irregularimagewidget.h
 
 FORMS += \
         mainwindow.ui \

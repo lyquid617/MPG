@@ -98,7 +98,7 @@ void MainWindow::setredWidget(QWidget *widget)
 }
 void MainWindow::setleftWidget(QWidget *widget)
 {
-    widget->setGeometry(0,69,250,565);//661
+    widget->setGeometry(0,69,240,591);//661
     QPalette pal(widget->palette());
     pal.setColor(QPalette::Background,QColor(43,43,43));
     widget->setAutoFillBackground(true);
@@ -321,11 +321,17 @@ void MainWindow::on_Pause_clicked()
     switch (player->state()) {
     case QMediaPlayer::PlayingState:
         player->pause();
-        rotatewindow->albumcover->stopRotateAnimation();
+        if(rotatewindow->albumcover && rotatewindow->stylus){
+            rotatewindow->albumcover->stopRotateAnimation();
+            rotatewindow->stylus->startRotateAnimation();
+        }
         break;
     case QMediaPlayer::PausedState:
         player->play();
-        rotatewindow->albumcover->startRotateAnimation();
+        if(rotatewindow->albumcover && rotatewindow->stylus){
+            rotatewindow->albumcover->startRotateAnimation();
+            rotatewindow->stylus->startRotateAnimation();
+        }
         break;
     case QMediaPlayer::StoppedState:
         //do nothing
@@ -387,6 +393,7 @@ void MainWindow::on_addMusic_clicked()
     fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
     fileDialog.setFileMode(QFileDialog::ExistingFiles);
     fileDialog.setWindowTitle("add local music");
+
     QStringList list;list<<"application/octet-stream";
     fileDialog.setMimeTypeFilters(list);
 
@@ -473,8 +480,8 @@ void MainWindow::albumcoverResize(bool isfull){
     if(isfull){
         lefttableWidget->hide();
         rotatewindow->show();
-        if(rotatewindow) rotatewindow->setGeometry(0,70,this->width(),this->height()-70-150);
-        qDebug() <<"window resize first : "<<rotatewindow->x()<<" "<<rotatewindow->y()<<endl;
+        if(rotatewindow) rotatewindow->setGeometry(0,70,this->width(),this->height()-70-135);
+        //qDebug() <<"window resize first : "<<rotatewindow->x()<<" "<<rotatewindow->y()<<endl;
 
     }else{
         lefttableWidget->show();
@@ -490,6 +497,7 @@ void MainWindow::on_albumcover_clicked()
     rotatewindow->on_btn_clicked();
     if(player->state()==QMediaPlayer::PlayingState) {
         rotatewindow->albumcover->startRotateAnimation();
+        rotatewindow->stylus->startRotateAnimation();
         qDebug() << "cover shown\n";
     }
 }

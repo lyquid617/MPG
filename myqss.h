@@ -57,6 +57,28 @@ inline QString OneloopStyle(){
             "}";
 }
 
+inline QString volumeStyle()
+{
+    return "QPushButton"
+   "{"
+   "background-image:url(:/image/image/volume.png);"
+   "background-repeat:no-repeat;"
+   "background-position:center center;"
+   "border:none;"
+    "}";
+}
+
+inline QString volume_offStyle()
+{
+    return "QPushButton"
+   "{"
+   "background-image:url(:/image/image/volume-off.png);"
+   "background-repeat:no-repeat;"
+   "background-position:center center;"
+   "border:none;"
+    "}";
+}
+
 
 
 

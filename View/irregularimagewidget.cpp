@@ -1,42 +1,50 @@
-﻿#include "RoundImageWidget.h"
+﻿#include "IrregularImageWidget.h"
 
-
-RoundImageWidget::RoundImageWidget(QWidget *parent) : QWidget(parent)
+IrregularImageWidget::IrregularImageWidget(QWidget *parent) : QWidget(parent)
 {
     m_rotateAngle = 0.0;
 
-    QString backgroundImageName(":/image/image/album.png");
+    QString backgroundImageName(":/image/image/stylus.png");
     bool isLoadOk = m_backgroundImage.load(backgroundImageName);
     if (!isLoadOk) {
         qDebug()<< "load" << backgroundImageName << "failed !";
     }
 }
 
-void RoundImageWidget::startRotateAnimation()
+
+
+void IrregularImageWidget::startRotateAnimation()
 {
     if (nullptr ==  m_timer) {
-
         // 通过定时器去旋转图片，可根据自身需求去设定旋转速度
         //speed 是频率
-        int speed = 50;
+        int speed = 15;
         qreal angle = 0.5;
 
         m_timer = new QTimer(this);
         m_timer->setInterval(speed);
 
         connect(m_timer, &QTimer::timeout, [=]() {
-            m_rotateAngle += angle;
-            if (m_rotateAngle > 360.0) {
-                m_rotateAngle = angle;
+            if(working) m_rotateAngle += angle;
+            else m_rotateAngle -= angle;
+            //qDebug() << m_rotateAngle <<endl;
+            if (m_rotateAngle >= 30.0 || m_rotateAngle <= 0.0) {
+                m_timer->stop();
+                //return ;
             }
             repaint();
         });
-    }
 
+    }
     m_timer->start();
+    working = !working;
+
 }
 
-void RoundImageWidget::paintEvent(QPaintEvent *event)
+
+
+
+void IrregularImageWidget::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event);
 
@@ -47,14 +55,13 @@ void RoundImageWidget::paintEvent(QPaintEvent *event)
        int centerPosH = height() >> 1;
 
        QPainter painter(this);
-       painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
-       // 把自身截取为圆形
-       QPainterPath path;
-       int round = qMin(width(), height());
-       path.addEllipse(0, 0, round, round);
-       painter.setClipPath(path);
 
-       // 设置中心点为起点
+       //QPainterPath path;
+       //int round = qMin(width(), height());
+       //path.addEllipse(0, 0, round, round);
+       //painter.setClipPath(path);
+
+       // 设置起点
        painter.translate(centerPosW, centerPosH);
        // 开始旋转
        painter.rotate(m_rotateAngle);
@@ -62,14 +69,6 @@ void RoundImageWidget::paintEvent(QPaintEvent *event)
        painter.translate(-centerPosW, -centerPosH);
 
        // 绘制图片
-       painter.drawPixmap(-1, -1, width()+2, height()+2, m_backgroundImage);
+       painter.drawPixmap(-1, -1, width()+2, height() + 2, m_backgroundImage);
     }
-}
-
-
-void RoundImageWidget::stopRotateAnimation()
-{
-    m_timer->stop();
-    //erase painter
-
 }

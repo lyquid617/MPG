@@ -48,10 +48,9 @@ void RotateWindow::on_btn_clicked(){
             //albumcover->show();
             cover = new QWidget(this);
             //the last para: this->y + y + para = 1300
-            qDebug() <<"cover change next\n";
             cover->setGeometry(0,0,this->width(),this->height());
             //change into a 更好看的color
-            cover->setStyleSheet("QWidget{background-color: rgb(200, 200, 200);}");
+            cover->setStyleSheet("QWidget{background-color: rgb(42, 42, 42);}");
             cover->show();
             if(albumcover){
                 albumcover->show();
@@ -59,6 +58,14 @@ void RotateWindow::on_btn_clicked(){
                 albumcover = new RoundImageWidget(cover);
                 albumcover->setGeometry(250,150,256,256);
                 albumcover->show();
+            }
+
+            if(stylus){
+                stylus->show();
+            }else{
+                stylus = new IrregularImageWidget(cover);
+                stylus->setGeometry(225,-50,300,300);
+                stylus->show();
             }
 
         }

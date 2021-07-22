@@ -5,6 +5,7 @@
 #include <QPixmap>
 #include "View/roundimagewidget.h"
 #include "View/pushbuttonwithimage.h"
+#include "View/irregularimagewidget.h"
 
 namespace Ui {
 class RotateWindow;
@@ -20,6 +21,7 @@ public:
     void setimage(QPixmap img);
     //void showbtn();
     RoundImageWidget * albumcover = NULL;
+    IrregularImageWidget * stylus = NULL;
     void on_btn_clicked();
 
 protected slots:

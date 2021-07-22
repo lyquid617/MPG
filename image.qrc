@@ -14,9 +14,7 @@
         <file>image/addmusic.png</file>
         <file>image/deletemusic.png</file>
         <file>image/addlist.png</file>
-
         <file>image/album.png</file>
-
         <file>image/close_normal.png</file>
         <file>image/close_pressed.png</file>
         <file>image/max_normal .png</file>
@@ -32,9 +30,9 @@
         <file>image/findMusic.png</file>
         <file>image/localmusic.png</file>
         <file>image/mmmmm.jpg</file>
+        <file>image/stylus.png</file>
     </qresource>
     <qresource prefix="/">
         <file>image/localmusic.png</file>
-
     </qresource>
 </RCC>

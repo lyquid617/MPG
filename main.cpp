@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QFont f("Microsoft YaHei");
+    QFont f("Microsoft YaHei",10);
     a.setFont(f);
     App* app = new App();
     app->run();
